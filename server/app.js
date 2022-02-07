@@ -46,9 +46,9 @@ app.get('/', (req, res) => {
     console.log(`Server running, ${PORT}`);
   });
   
-  cron.schedule('* * * * *', async() => {
-    await transactionController.fundAccount({ body: {amount: 100, customerId: 1}});
-  });
+  // cron.schedule('* * * * *', async() => {
+  //   await transactionController.fundAccount({ body: {amount: 100, customerId: 1}});
+  // });
   
   
   cron.schedule(process.env.fetchTransactionAndSendToQueue, async () => {

@@ -12,14 +12,10 @@ class transactionService {
     const t = await sequelize.transaction();
     try {
       const transaction = await database.transaction.create(body, { transaction: t });
-      // If the execution reaches this line, no errors were thrown.
       await t.commit();
-
       return { status: true, data: transaction};
     } catch (error) {
       await t.rollback();
-      console.log("Request error -- " + JSON.stringify(error));
-      console.log("Request error --m " + error.message);
       return { status: false, message : JSON.stringify(error)} //test
       throw error; //test
     }
