@@ -16,8 +16,7 @@ class transactionService {
       return { status: true, data: transaction};
     } catch (error) {
       await t.rollback();
-      return { status: false, message : JSON.stringify(error)} //test
-      throw error; //test
+      return { status: false, message : JSON.stringify(error)}
     }
   }  
 
