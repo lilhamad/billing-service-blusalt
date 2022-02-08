@@ -1,12 +1,21 @@
 version: '3.4'
 
 services:
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Admin@1234
+
   billingservice:
-    image: billingservice
+    # image: customerservice
+    depends_on:
+      - db
     build:
       context: .
       dockerfile: ./Dockerfile
-    environment:
-      NODE_ENV: production
+    env_file:
+      - .env
     ports:
-      - 202:202
+      - 202:3002

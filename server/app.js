@@ -5,7 +5,6 @@ import helmet from 'helmet';
 import './config';
 import { Response } from '@utilities';
 import transactionRoutes from './routes/transactionRoutes';
-const fileUpload = require('express-fileupload');
 var cron = require('node-cron');
 import transactionController from './controllers/transactionController';
 import transactionService from './services/transactionService';
@@ -22,10 +21,6 @@ const corsOptions = {
 
 const app = express();
 
-app.use(fileUpload({
-  useTempFiles: true,
-  tempFileDir: '/tmp/',
-}));
 app.set('trust proxy', true);
 // MIDDLEWARES
 app.use(cors(corsOptions));
