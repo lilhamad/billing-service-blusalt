@@ -4,16 +4,29 @@ Backend technology used : Node.js/Express.js
 
 service-to-service communication used : RabbitMQ
 
-// run service npm run start:dev
+# Steps to run Billing service 
 
-// migrate npm run migrate
+- create .env and paste this content
 
-// seed npx sequelize-cli db:seed:all
+	PORT = 202
+	BILLING_SERVICE_URL = http://localhost:202/api/v1/transaction/create
+	DB_URL=mysql://root:Admin@1234@127.0.0.1/billings_db
+	transactionQueueName = transactionsQueue
 
-//port : 202
+- create a database called "billings_db"
+- replace DB_URL in the env file with : your database credentials.
+  root : your db user
+  Admin@1234 : your db password
+  billings_db : your db name
+  mysql : your dialect
+  127.0.0.1 : your db host
 
-//RABBITMQURL can be set on the env
+Run locally
 
-Note
+// migrate : npm run migrate
 
-- billing-service runs every 5mins to publish a transaction to rabbitMq for seeded customer (with id 1)
+// run service : npm run start:dev
+
+Run on docker
+// run service : docker-compose up
+// you might have to settup your database info on dockerFile and docker-compose.yml
